@@ -1,5 +1,5 @@
-삽입 : 성공
-삭제 : 성공
+// 삽입 : 성공
+// 삭제 : 성공
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

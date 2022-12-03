@@ -1,3 +1,6 @@
+ì‚½ì… : ì„±ê³µ
+ì‚­ì œ : ì„±ê³µ
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,9 +9,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Arrays;
-import java.util.ArrayList;
 
-class KeyNodeArr{ // splitNode ÇÔ¼ö¿¡¼­ key¿Í TreeNode¸¦ ÇÑ¹ø¿¡ returnÇÏ±âÀ§ÇØ »ç¿ëÇÒ class
+class KeyNodeArr{ // splitNode í•¨ìˆ˜ì—ì„œ keyì™€ TreeNodeë¥¼ í•œë²ˆì— returní•˜ê¸°ìœ„í•´ ì‚¬ìš©í•  class
 	int key = 0;
 	TreeNode node = null;
 	
@@ -19,17 +21,17 @@ class KeyNodeArr{ // splitNode ÇÔ¼ö¿¡¼­ key¿Í TreeNode¸¦ ÇÑ¹ø¿¡ returnÇÏ±âÀ§ÇØ »
 }
 
 class TreeNode{
-	int n; // n: ÇØ´ç ³ëµå°¡ °®°í ÀÖ´Â Å°ÀÇ °³¼ö
-	int[] K = null; // ÇØ´ç ³ëµå°¡ °®°í ÀÖ´Â Å°
-	TreeNode[] P = null; // ÇØ´ç ³ëµåÀÇ ÀÚ½Ä³ëµå
+	int n; // n: í•´ë‹¹ ë…¸ë“œê°€ ê°–ê³  ìˆëŠ” í‚¤ì˜ ê°œìˆ˜
+	int[] K = null; // í•´ë‹¹ ë…¸ë“œê°€ ê°–ê³  ìˆëŠ” í‚¤
+	TreeNode[] P = null; // í•´ë‹¹ ë…¸ë“œì˜ ìì‹ë…¸ë“œ
 	
 	TreeNode(int m){
 		this.n = 0;
-		this.K = new int[m]; // insertKey¸¦ À§ÇØ ÇÊ¿äÇÑ Å©±âº¸´Ù 1 Å©°Ô ¸¸µê
-		this.P = new TreeNode[m+1]; // insertKey¸¦ À§ÇØ ÇÊ¿äÇÑ Å©±âº¸´Ù 1 Å©°Ô ¸¸µê 
+		this.K = new int[m]; // insertKeyë¥¼ ìœ„í•´ í•„ìš”í•œ í¬ê¸°ë³´ë‹¤ 1 í¬ê²Œ ë§Œë“¦
+		this.P = new TreeNode[m+1]; // insertKeyë¥¼ ìœ„í•´ í•„ìš”í•œ í¬ê¸°ë³´ë‹¤ 1 í¬ê²Œ ë§Œë“¦ 
 	}
 	
-	TreeNode(int n, int[] k, TreeNode[] p) {
+	TreeNode(int n, int[] k, TreeNode[] p) { // copyNode í•¨ìˆ˜ë¥¼ ìœ„í•´ ë§Œë“¤ì–´ ë‘” ìƒì„±ì
 		this.n = n;
 		this.K = k;
 		this.P = p;
@@ -40,49 +42,49 @@ public class BT {
 	TreeNode root = null; // root node
 	Deque<TreeNode> stack = new ArrayDeque<>(); // stack
 	
-	// node¸¦ Ã£¾Æ ¹ß°ß ¿©ºÎ¸¦ returnÇÏ°í °æ·Î¸¦ stack¿¡ ÀúÀå
-	boolean searchPath(TreeNode T, int m, int key) { // m: Æ®¸®ÀÇ Â÷¿ø, key: Ã£À» key	
+	// nodeë¥¼ ì°¾ì•„ ë°œê²¬ ì—¬ë¶€ë¥¼ returní•˜ê³  ê²½ë¡œë¥¼ stackì— ì €ì¥
+	boolean searchPath(TreeNode T, int m, int key) { // m: íŠ¸ë¦¬ì˜ ì°¨ì›, key: ì°¾ì„ key	
 		TreeNode x = T;
 		int i = 0;
 		do {
 			i = 0;
 			while(i < x.n && key > x.K[i]) i += 1;
 			
-			// »ğÀÔÇÒ Å° ¹ß°ßÇßÀ» °æ¿ì -> ÀÌ¹Ì Æ®¸®¿¡ Á¸ÀçÇÏ¹Ç·Î »ğÀÔ ºÒ°¡
-			stack.push(x); // °æ·Î update
-			if(i < x.n && key == x.K[i]) return true; // Á¾·á
+			// ì‚½ì…í•  í‚¤ ë°œê²¬í–ˆì„ ê²½ìš° -> ì´ë¯¸ íŠ¸ë¦¬ì— ì¡´ì¬í•˜ë¯€ë¡œ ì‚½ì… ë¶ˆê°€
+			stack.push(x); // ê²½ë¡œ update
+			if(i < x.n && key == x.K[i]) return true; // ì¢…ë£Œ
 			
-			// »ğÀÔÇÒ Å°¸¦ ¾ÆÁ÷ ¹ß°ßÇÏÁö ¸øÇßÀ» °æ¿ì
+			// ì‚½ì…í•  í‚¤ë¥¼ ì•„ì§ ë°œê²¬í•˜ì§€ ëª»í–ˆì„ ê²½ìš°
 		} while((x = x.P[i]) != null);
 		return false;
 	}
 	
-	// node xÀÇ Àû´çÇÑ À§Ä¡¿¡ »ğÀÔ
-	void insertKey(int m, TreeNode x, TreeNode y, int newKey) { // y: ÀÚ½Ä ³ëµå¿¡¼­ splitµÇ¾î »õ·Î ¸¸µé¾îÁø ³ëµå
-		// newKeyº¸´Ù Å« keyµéÀ» ¿À¸¥ÂÊÀ¸·Î ÇÑ Ä­¾¿ ÀÌµ¿
+	// node xì˜ ì ë‹¹í•œ ìœ„ì¹˜ì— ì‚½ì…
+	void insertKey(int m, TreeNode x, TreeNode y, int newKey) { // y: ìì‹ ë…¸ë“œì—ì„œ splitë˜ì–´ ìƒˆë¡œ ë§Œë“¤ì–´ì§„ ë…¸ë“œ
+		// nodeì˜ ë’¤ì—ì„œë¶€í„° whileë¬¸ ëŒë¦¬ê¸° ìœ„í•´ i ì„¤ì •
 		int i = x.n - 1;
-		
+		// newKeyë³´ë‹¤ í° keyë“¤ ì˜¤ë¥¸ìª½ìœ¼ë¡œ í•œ ì¹¸ì”© ì´ë™
 		while(i >= 0 && newKey < x.K[i]) {
 			x.K[i+1] = x.K[i];
 			x.P[i+2] = x.P[i+1];
 			i -= 1;
 		}
 		
-		// newKey »ğÀÔ
+		// ì´ë™ì‹œí‚¤ê³  ìƒˆë¡œ ìƒê¸´ ìë¦¬ì— newKey ì‚½ì…
 		x.K[i+1] = newKey;
 		x.P[i+2] = y;
 		x.n += 1;
 	}
 	
 	void copyNode(TreeNode a, TreeNode b, int m) { // copy a to b
-		b.n = a.n;
-		for(int i = 0; i < m; i++) {
+		b.n = a.n; // n copy
+		for(int i = 0; i < m; i++) { // K, P copy
 			b.K[i] = a.K[i];
 			b.P[i] = a.P[i];
 		}
 	}
 	
-	void clearNode(TreeNode t, int m) { // nodeÀÇ n, K, P¸¦ ¸ğµÎ ÃÊ±âÈ­
+	void clearNode(TreeNode t, int m) { // nodeì˜ n, K, Pë¥¼ ëª¨ë‘ ì´ˆê¸°í™”
 		t.n = 0;
 		for(int i=0; i<m; i++) {
 			t.K[i] = 0;
@@ -90,20 +92,20 @@ public class BT {
 		}
 	}
 	
-	// split ¼öÇà
+	// split ìˆ˜í–‰
 	KeyNodeArr splitNode(int m, TreeNode x, TreeNode y, int newKey) {
 		TreeNode tmpNode = new TreeNode(m+1);
-		copyNode(x, tmpNode, m); // overflow¸¦ À§ÇÑ ÀÓ½Ã ³ëµå
+		copyNode(x, tmpNode, m); // overflowë¥¼ ìœ„í•œ ì„ì‹œ ë…¸ë“œ
 		insertKey(m, tmpNode, y, newKey);
 		
 		int center = tmpNode.n/2;
-		int centerKey = tmpNode.K[center]; // ºĞÇÒ ±âÁØ
+		int centerKey = tmpNode.K[center]; // ë¶„í•  ê¸°ì¤€
 		
-		// centerKey ÀÌÀü °ªÀ» ³ëµå x·Î º¹»ç
-		clearNode(x, m);
+		// centerKey ì´ì „ ê°’ì„ ë…¸ë“œ xë¡œ ë³µì‚¬
+		clearNode(x, m); // ë³µì‚¬ ì „ xë…¸ë“œ clear
 		int i = 0;
 		
-		while(tmpNode.K[i] < centerKey) {
+		while(tmpNode.K[i] < centerKey) { // ë¶„í•  ê¸°ì¤€ì´ ë˜ëŠ” keyë³´ë‹¤ ì‘ì€ ê°’ë“¤ xë…¸ë“œì— ë„£ìŒ -> ë¶„í•  ê¸°ì¤€ì´ ë˜ëŠ” í‚¤ì˜ ì™¼ìª½ ìì‹ ë…¸ë“œê°€ ë  ê°’ë“¤
 			x.K[i] = tmpNode.K[i];
 			x.P[i] = tmpNode.P[i];
 			i += 1;
@@ -111,8 +113,8 @@ public class BT {
 		}
 		x.P[i] = tmpNode.P[i];
 		
-		TreeNode newNode = new TreeNode(m); // centerKey ÀÌÈÄ °ªÀ» ³ëµå newNode·Î º¹»ç
-		i += 1; // centerKey °ª °Ç³Ê¶Ü
+		TreeNode newNode = new TreeNode(m); // centerKey ì´í›„ ê°’ì„ ë…¸ë“œ newNodeë¡œ ë³µì‚¬ -> ë¶„í•  ê¸°ì¤€ì´ ë˜ëŠ” í‚¤ì˜ ì˜¤ë¥¸ìª½ ìì‹ ë…¸ë“œê°€ ë  ê°’ë“¤
+		i += 1; // centerKey ê°’ ê±´ë„ˆëœ€
 		while(i < tmpNode.n) {
 			newNode.K[newNode.n] = tmpNode.K[i];
 			newNode.P[newNode.n] = tmpNode.P[i];
@@ -121,45 +123,45 @@ public class BT {
 		}
 		newNode.P[newNode.n] = tmpNode.P[i];
 		
-		return new KeyNodeArr(centerKey, newNode);
+		return new KeyNodeArr(centerKey, newNode); // KeyNodeArr classë¥¼ ì´ìš©í•´ centerKeyì™€ newNode ë™ì‹œì— return
 	}
 	
-	// oldKey¸¦ x¿¡¼­ Á¦°Å
+	// oldKeyë¥¼ xì—ì„œ ì œê±°
 	void deleteKey(int m, TreeNode x, int oldKey) {
-		// oldKeyÀÇ À§Ä¡ i Å½»ö
+		// oldKeyì˜ ìœ„ì¹˜ i íƒìƒ‰
 		int i = 0;
 		while(oldKey > x.K[i]) i += 1;
 		
-		// oldKeyº¸´Ù Å« keyµéÀ» ¿ŞÂÊÀ¸·Î ÇÑ Ä­¾¿ ÀÌµ¿, ÇöÀç i´Â oldKey À§Ä¡
+		// oldKeyë³´ë‹¤ í° keyë“¤ì„ ì™¼ìª½ìœ¼ë¡œ í•œ ì¹¸ì”© ì´ë™
 		while(i < x.n) {
 			x.K[i] = x.K[i+1];
 			x.P[i+1] = x.P[i+2];
 			i += 1;
 		}
-		x.n -= 1;
+		x.n -= 1; // oldKey ì‚­ì œí–ˆìœ¼ë‹ˆ n-1 ìˆ˜í–‰
 	}
 	
-	// xÀÇ best ÇüÁ¦ ³ëµå À§Ä¡ ¹İÈ¯
-	int bestSibling(int m, TreeNode x, TreeNode y) { // y: xÀÇ ºÎ¸ğ ³ëµå
-		// y¿¡¼­ xÀÇ À§Ä¡ i¸¦ Å½»ö
+	// xì˜ best í˜•ì œ ë…¸ë“œ ìœ„ì¹˜ ë°˜í™˜
+	int bestSibling(int m, TreeNode x, TreeNode y) { // y: xì˜ ë¶€ëª¨ ë…¸ë“œ
+		// yì—ì„œ xì˜ ìœ„ì¹˜ ië¥¼ íƒìƒ‰
 		int i = 0;
 		while(y.P[i] != x) i += 1;
 		
-		// ¹Ù·Î ÀÎÁ¢ÇÑ µÎ ÇüÁ¦ Áß, Å°ÀÇ °³¼ö°¡ ¸¹Àº ÇüÁ¦¸¦ bestSiblingÀ¸·Î ¼±ÅÃ
-		if(i == 0) return i+1; // ¿ŞÂÊ ÇüÁ¦ ¾øÀ½
-		else if(i == y.n) return i-1; // ¿À¸¥ÂÊ ÇüÁ¦ ¾øÀ½
+		// ë°”ë¡œ ì¸ì ‘í•œ ë‘ í˜•ì œ ì¤‘, í‚¤ì˜ ê°œìˆ˜ê°€ ë§ì€ í˜•ì œë¥¼ bestSiblingìœ¼ë¡œ ì„ íƒ
+		if(i == 0) return i+1; // ì™¼ìª½ í˜•ì œ ì—†ìŒ
+		else if(i == y.n) return i-1; // ì˜¤ë¥¸ìª½ í˜•ì œ ì—†ìŒ
 		else if(y.P[i].n >= y.P[i+1].n) return i-1;
 		else return i+1;
 	}
 	
-	// x¿Í best sibling ³ëµå °£ÀÇ Å° ÀçºĞ¹è ¼öÇà
-	void redistributeKeys(int m, TreeNode x, TreeNode y, int bs) { // y: xÀÇ ºÎ¸ğ ³ëµå, bs: best sibling index
-		// y¿¡¼­ xÀÇ À§Ä¡ i¸¦ Å½»ö
+	// xì™€ best sibling ë…¸ë“œ ê°„ì˜ í‚¤ ì¬ë¶„ë°° ìˆ˜í–‰
+	void redistributeKeys(int m, TreeNode x, TreeNode y, int bs) { // y: xì˜ ë¶€ëª¨ ë…¸ë“œ, bs: best sibling index
+		// yì—ì„œ xì˜ ìœ„ì¹˜ ië¥¼ íƒìƒ‰
 		int i = 0;
 		while(y.P[i] != x) i += 1;
 		
 		TreeNode bestNode = y.P[bs];
-		if(bs < i) {
+		if(bs < i) { // swap
 			int lastKey = bestNode.K[bestNode.n-1];
 			insertKey(m, x, null, y.K[i-1]);
 			x.P[1] = x.P[0];
@@ -167,23 +169,23 @@ public class BT {
 			bestNode.P[bestNode.n] = null;
 			deleteKey(m, bestNode, lastKey);
 			y.K[i-1] = lastKey;
-		} else {
+		} else { // swap
 			int firstKey = bestNode.K[0];
 			insertKey(m, x, null, y.K[i]);
 			x.P[x.n] = bestNode.P[0];
-		    bestNode.P[0] = bestNode.P[1];
+		    	bestNode.P[0] = bestNode.P[1];
 			deleteKey(m, bestNode, firstKey);
 			y.K[i] = firstKey;
 		}
 	}
 	
-	// x¿Í best sibling ³ëµå °£ÀÇ ÇÕº´ ¼öÇà
+	// xì™€ best sibling ë…¸ë“œ ê°„ì˜ í•©ë³‘ ìˆ˜í–‰
 	void mergeNode(int m, TreeNode x, TreeNode y, int bs) {
-		int i = 0; // y¿¡¼­ xÀÇ À§Ä¡ iÅ½»ö
+		int i = 0; // yì—ì„œ xì˜ ìœ„ì¹˜ iíƒìƒ‰
 		while(y.P[i] != x) i += 1;
 		
 		TreeNode bestNode = y.P[bs];
-		// ¿ŞÂÊ ÇüÁ¦ ³ëµå·ÎÀÇ º´ÇÕ¸¸ °í·ÁÇÒ ¼ö ÀÖµµ·Ï swap
+		// ì™¼ìª½ í˜•ì œ ë…¸ë“œë¡œì˜ ë³‘í•©ë§Œ ê³ ë ¤í•  ìˆ˜ ìˆë„ë¡ swap
 		if(bs > i) {
 			int tmp = i;
 			i = bs;
@@ -193,7 +195,7 @@ public class BT {
 			x = bestNode;
 			bestNode = tmpNode;
 		}
-		// ¿ŞÂÊ ÇüÁ¦ ³ëµå¿Í º´ÇÕ
+		// ì™¼ìª½ í˜•ì œ ë…¸ë“œì™€ ë³‘í•©
 		bestNode.K[bestNode.n] = y.K[i-1];
 		bestNode.n += 1;
 		int j = 0;
@@ -207,9 +209,9 @@ public class BT {
 		deleteKey(m, y, y.K[i-1]);
 	}
 	
-	// ³ëµå »ğÀÔ
-	void insertBT(int m, int newKey) { // m: Æ®¸®ÀÇ Â÷¿ø, newKey: »õ·Î¿î ³ëµåÀÇ Å°
-		// root node »ı¼º
+	// ë…¸ë“œ ì‚½ì…
+	void insertBT(int m, int newKey) { // m: íŠ¸ë¦¬ì˜ ì°¨ì›, newKey: ìƒˆë¡œìš´ ë…¸ë“œì˜ í‚¤
+		// root node ìƒì„±
 		if(this.root == null) {
 			this.root = new TreeNode(m);
 			this.root.K[0] = newKey;
@@ -217,32 +219,32 @@ public class BT {
 			return;
 		}
 		
-		// newKey¸¦ »ğÀÔÇÒ ³ëµåÀÇ °æ·Î¸¦ Å½»öÇÏ¸ç ½ºÅÃ¿¡ °æ·Î ÀúÀå
+		// newKeyë¥¼ ì‚½ì…í•  ë…¸ë“œì˜ ê²½ë¡œë¥¼ íƒìƒ‰í•˜ë©° ìŠ¤íƒì— ê²½ë¡œ ì €ì¥
 		stack.clear();
 		boolean found = searchPath(this.root, m, newKey);
 		if(found) {
 			System.out.println(String.format("i %d : The key already exists.", newKey));
-			return; // ÀÌ¹Ì newKey°¡ Á¸ÀçÇÏ´Â °æ¿ì
+			return; // ì´ë¯¸ newKeyê°€ ì¡´ì¬í•˜ëŠ” ê²½ìš°
 		}
 		
-		// newKey°¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì, »ğÀÔ °¡´É
+		// newKeyê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°, ì‚½ì… ê°€ëŠ¥
 		boolean finished = false;
 		
-		TreeNode x = stack.pop(); // °æ·ÎÀÇ top
-		TreeNode y = null; // »õ·Î ºĞÇÒµÈ ³ëµå¸¦ ´ãÀ» º¯¼ö
+		TreeNode x = stack.pop(); // ê²½ë¡œì˜ top
+		TreeNode y = null; // ìƒˆë¡œ ë¶„í• ëœ ë…¸ë“œë¥¼ ë‹´ì„ ë³€ìˆ˜
 		
 		do {
-			if(x.n < m-1) { // overflow ¹ß»ı ¿©ºÎ
-				// overflow ¹ß»ı ¾ÈÇÔ, newKey »ğÀÔ
+			if(x.n < m-1) { // overflow ë°œìƒ ì—¬ë¶€
+				// overflow ë°œìƒ ì•ˆí•¨, newKey ì‚½ì…
 				insertKey(m, x, y, newKey);
 				finished = true;
-			} else { // overflow ¹ß»ı
-				// x¸¦ newKey¸¦ ±âÁØÀ¸·Î ºĞÇÒ, ºĞÇÒµÈ ³ëµå ¹İÈ¯
+			} else { // overflow ë°œìƒ
+				// xë¥¼ newKeyë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë¶„í• , ë¶„í• ëœ ë…¸ë“œ ë°˜í™˜
 				KeyNodeArr ans = splitNode(m, x, y, newKey);
 				newKey = ans.key;
 				y = ans.node;
 				if(!stack.isEmpty()) x = stack.pop();
-				else { // tree level 1 Áõ°¡
+				else { // tree level 1 ì¦ê°€
 					this.root = new TreeNode(m);
 					this.root.K[0] = newKey;
 					this.root.P[0] = x;
@@ -251,61 +253,61 @@ public class BT {
 					finished = true;
 				}
 			}
-		} while(!finished);
+		} while(!finished); // finished ë³€ìˆ˜ë¥¼ ì‚¬ìš©í•´ íŠ¸ë¦¬ì˜ ë¶€ëª¨ ë…¸ë“œë¡œ ì´ë™í•´ê°€ë©° overflowì—†ì•°
 	}
 	
-	boolean isTerminalNode(TreeNode t, int m) {
-		for(int i=0; i<m+1; i++) {
+	boolean isTerminalNode(TreeNode t, int m) { // ë‹¨ë§ ë…¸ë“œì¸ì§€ íŒë‹¨
+		for(int i=0; i<m+1; i++) { // Pê°€ ë¹„ì–´ìˆëŠ”ì§€ë¥¼ ë”°ì ¸ ë‹¨ë§ ë…¸ë“œì¸ì§€ íŒë‹¨
 			if(t.P[i] != null) return false;
 		}
 		return true;
 	}
 	
-	// ³ëµå »èÁ¦
+	// ë…¸ë“œ ì‚­ì œ
 	void deleteBT(int m, int oldKey) {
-		// oldKey°¡ ÀÖ´ø ³ëµåÀÇ °æ·Î Å½»ö, ½ºÅÃ¿¡ °æ·Î ÀúÀå
+		// oldKeyê°€ ìˆë˜ ë…¸ë“œì˜ ê²½ë¡œ íƒìƒ‰, ìŠ¤íƒì— ê²½ë¡œ ì €ì¥
 		stack.clear();
-		boolean found = searchPath(this.root, m, oldKey);
+		boolean found = searchPath(this.root, m, oldKey); 
 		if(!found) {
 			System.out.println(String.format("d %d : The key does not exist.", oldKey));
-			return; // oldKey ¹ß°ß ¸øÇÔ, »èÁ¦ ºÒ°¡
+			return; // oldKey ë°œê²¬ ëª»í•¨, ì‚­ì œ ë¶ˆê°€
 		}
 		
 		TreeNode x = stack.pop();
 		TreeNode y = null;
 		
 		
-		if(!isTerminalNode(x, m)) { // oldKey¸¦ ³»ºÎ ³ëµå¿¡¼­ ¹ß°ß
+		if(!isTerminalNode(x, m)) { // oldKeyë¥¼ ë‚´ë¶€ ë…¸ë“œì—ì„œ ë°œê²¬ -> ë‹¨ë§ë…¸ë“œë¡œ ì´ë™ì‹œì¼œì•¼í•¨
 			TreeNode internalNode = x;
 			int i = 0;
 			while(x.K[i] != oldKey) i++;
 			
 			stack.push(x);
 			
-			// ÈÄÇàÅ°ÀÇ À§Ä¡ Å½»ö 
+			// í›„í–‰í‚¤ì˜ ìœ„ì¹˜ íƒìƒ‰ 
 			searchPath(x.P[i + 1], m, x.K[i]);
 			
-			// ÈÄÇàÅ°¿Í oldKey ±³È¯
-			x = stack.pop(); // x = ÈÄÇàÅ°°¡ ÀÖ´Â ´Ü¸» ³ëµå
+			// í›„í–‰í‚¤ì™€ oldKey êµí™˜
+			x = stack.pop(); // x = í›„í–‰í‚¤ê°€ ìˆëŠ” ë‹¨ë§ ë…¸ë“œ
 			int tmp = internalNode.K[i];
 			internalNode.K[i] = x.K[0];
 			x.K[0] = tmp; // x.K[0] = oldKey
 		}
 		boolean finished = false;
-		deleteKey(m, x, oldKey); // ³ëµå x¿¡¼­ oldKey »èÁ¦
+		deleteKey(m, x, oldKey); // ë…¸ë“œ xì—ì„œ oldKey ì‚­ì œ
 		
-		if(!stack.isEmpty()) y = stack.pop(); // y´Â xÀÇ ºÎ¸ğ ³ëµå
+		if(!stack.isEmpty()) y = stack.pop(); // yëŠ” xì˜ ë¶€ëª¨ ë…¸ë“œ
 		
 		do {
-			if(this.root == x || x.n >= (m - 1) / 2) finished = true; // underflow ¹ß»ı x
-			else { // underflow ¹ß»ı
-				// Å° ÀçºĞ¹è ¶Ç´Â ³ëµå ÇÕº´À» À§ÇÑ ÇüÁ¦ ³ëµå °áÁ¤
+			if(this.root == x || x.n >= (m - 1) / 2) finished = true; // underflow ë°œìƒ x
+			else { // underflow ë°œìƒ
+				// í‚¤ ì¬ë¶„ë°° ë˜ëŠ” ë…¸ë“œ í•©ë³‘ì„ ìœ„í•œ í˜•ì œ ë…¸ë“œ ê²°ì •
 				int bs = bestSibling(m, x, y);
 				
-				if(y.P[bs].n > (m - 1) / 2) { // bestSibling¿¡¼­ ÀçºĞ¹è
+				if(y.P[bs].n > (m - 1) / 2) { // bestSiblingì—ì„œ ì¬ë¶„ë°°
 					redistributeKeys(m, x, y, bs);
 					finished = true;
-				} else { // bestSibling°ú ³ëµå ÇÕº´
+				} else { // bestSiblingê³¼ ë…¸ë“œ í•©ë³‘
 					mergeNode(m, x, y, bs);
 					x = y;
 					if(!stack.isEmpty()) y = stack.pop();
@@ -314,27 +316,27 @@ public class BT {
 			}
 		} while(!finished);
 		
-		if(y != null && y.n == 0) { // y¿¡ key°¡ ¾øÀ» °æ¿ì(ºñ¾îÀÖ´Â °æ¿ì)
+		if(y != null && y.n == 0) { // yì— keyê°€ ì—†ì„ ê²½ìš°(ë¹„ì–´ìˆëŠ” ê²½ìš°)
 			this.root = y.P[0];
 		}
 	}
 	
-	// inorder ¼øÈ¸ ¾Ë°í¸®Áò
+	// inorder ìˆœíšŒ ì•Œê³ ë¦¬ì¦˜
 	void inorderBT(TreeNode T, int m) {
 		if(T != null && T.n != 0)
-			for(int i=0; i < m; i++) {
+			for(int i=0; i < m; i++) { // ë…¸ë“œì˜ ìì‹ ë…¸ë“œë¥¼ ìˆœì°¨ì ìœ¼ë¡œ ëŒì•„ë´„
 				inorderBT(T.P[i], m);
-				if(i < T.n)
+				if(i < T.n) 
 					System.out.print(T.K[i] + " ");
 			}
 	}
 	
 	public static void main(String[] args) throws IOException {
-		BT test3 = new BT();
-		BT test4 = new BT();
+		BT test3 = new BT(); // m = 3ì¼ ë•Œ ì‚¬ìš©í•  BíŠ¸ë¦¬ ê°ì²´
+		BT test4 = new BT(); // m = 4ì¼ ë•Œ ì‚¬ìš©í•  BíŠ¸ë¦¬ ê°ì²´
 		
 		BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\alina\\Desktop\\Java\\File Processing\\src\\BT-input.txt"));
-		
+		// m = 3ì¼ ë•Œ test
 		while(true) {
 			String line = br.readLine();
 			if(line == null) break;
@@ -349,7 +351,7 @@ public class BT {
 		}
 		
 		br = new BufferedReader(new FileReader("C:\\Users\\alina\\Desktop\\Java\\File Processing\\src\\BT-input.txt"));
-		
+		// m = 4ì¼ ë•Œ test
 		while(true) {
 			String line = br.readLine();
 			if(line == null) break;
